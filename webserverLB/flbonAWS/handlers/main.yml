@@ -1,0 +1,7 @@
+---
+# handlers file for flbonAWS
+
+- name: "restarting loadbalancer"
+  service:
+    name: "haproxy"
+    state: restarted

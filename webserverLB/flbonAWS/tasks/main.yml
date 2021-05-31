@@ -1,0 +1,18 @@
+---
+# tasks file for flbonAWS
+
+- name: "Installing haproxy"
+  package:
+    name: "haproxy"
+    state: present
+
+- name: "Copying Template of Config file from the Controller System"
+  template:
+    src: "haproxy.cfg"
+    dest: "/etc/haproxy/haproxy.cfg"
+  notify: restarting loadbalancer
+
+- name: Starting Loadbalancer
+  service:
+    name: "haproxy"
+    state: started
